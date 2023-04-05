@@ -1,0 +1,18 @@
+JunitWrapper&Node script
+
+-> un test suite poate avea un test asignat de mai multe ori, insa JunitWrapper genereaza doar un outputfile per test, urmand sa dea override de fiecare data cand e rulat testul, din cauza asta la restul testelor 
+cu acelasi nume se da skip;
+-> pentru testele cu acelasi repo dar branch diferit nu va fi corect classpath ul
+
+
+Pt migrare teste automate:
+-> convert to test package -> asta o sa genereze testele corespunzatoare metodelor care vor fi migrate ca teste automate in Octane, iar testul initial va fi migrat ca si test suite continand toate testele generate -> revert pentru testele la care s-a dat convert
+
+-> Octane test name = SC test method, daca nu exista test method se foloseste test method ul luat din External Id 
+   Octane 
+-> la testele automate care au data driven properties enabled nu se poate face convert (nu prea pot fi migrate)
+-> testele automate care nu au run uri sau ultimul run nu are output.xml nu pot fi convertite.
+-> testele ignored nu pot convertite din cauza output.xml ului care nu contine tag-uri de testcase, prin urmare nu e corespunzator -> testele ignored nu apar in SC-> nu vor aparea nici in Octane
+-> trebuie gasita o modalitate de a aduce in Octane testele adaugate ulterior migrarii 
+-> detaliile din source control profile trebuie migrate ca udf-uri (?)
+-> ce se intampla cu testele care source control profile altfel decat git based
